@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Morador = require("../model/morador");
+const Functions = require("../resources/Functions");
 
-router.get("/", async (req,res) => {
+router.get("/", Functions.paginatedResults(Morador), (req, res) => {
     try {
-        const moradores = await Morador.find();
-        res.json(moradores);
+        /* const moradores = await Morador.find(); */
+        res.json(res.paginatedResults);
     } catch(err) {
         res.send("Erro: "+ err);
     }

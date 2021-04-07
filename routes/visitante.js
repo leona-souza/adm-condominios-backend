@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Visitante = require("../model/visitante");
+const Functions = require("../resources/Functions");
 
-router.get("/", async (req,res) => {
+router.get("/", Functions.paginatedResults(Visitante), (req, res) => {
     try {
-        const visitantes = await Visitante.find();
-        res.json(visitantes);
+        /* const visitantes = await Visitante.find(); */
+        res.json(res.paginatedResults);
     } catch(err) {
         res.send("Erro: "+ err);
     }

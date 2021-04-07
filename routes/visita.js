@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Visita = require("../model/visita");
+const Functions = require("../resources/Functions");
+const sort = {data: -1};
 
-router.get("/", async (req,res) => {
+router.get("/", Functions.paginatedResults(Visita, sort), (req, res) => {
     try {
-        const visitas = await Visita.find().sort({data: -1});
-        res.json(visitas);
+        /* const visitas = await Visita.find().sort({data: -1}); */
+        res.json(res.paginatedResults);
     } catch(err) {
         res.send("Erro: "+ err);
     }

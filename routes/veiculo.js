@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Veiculo = require("../model/veiculo");
+const Functions = require("../resources/Functions");
 
-router.get("/", async (req,res) => {
+router.get("/", Functions.paginatedResults(Veiculo), (req, res) => {
     try {
-        const veiculos = await Veiculo.find();
-        res.json(veiculos);
+        /* const veiculos = await Veiculo.find(); */
+        res.json(res.paginatedResults);
     } catch(err) {
         res.send("Erro: "+ err);
     }

@@ -4,11 +4,12 @@ const Apartamento = require("../model/apartamento");
 const Morador = require("../model/morador");
 const Veiculo = require("../model/veiculo");
 const Visitante = require("../model/visitante");
+const Functions = require("../resources/Functions");
 
-router.get("/", async (req,res) => {
+router.get("/", Functions.paginatedResults(Apartamento), (req,res) => {
     try {
-        const apartamentos = await Apartamento.find();
-        res.json(apartamentos);
+        /* const apartamentos = Apartamento.find(); */
+        res.json(res.paginatedResults);
     } catch(err) {
         res.send("Erro: "+ err);
     }
