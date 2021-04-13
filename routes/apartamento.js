@@ -5,8 +5,9 @@ const Morador = require("../model/morador");
 const Veiculo = require("../model/veiculo");
 const Visitante = require("../model/visitante");
 const Functions = require("../resources/Functions");
+const sort = {numero: -1};
 
-router.get("/", Functions.paginatedResults(Apartamento), (req,res) => {
+router.get("/", Functions.paginatedResults(Apartamento, sort), (req,res) => {
     try {
         /* const apartamentos = Apartamento.find(); */
         res.json(res.paginatedResults);
