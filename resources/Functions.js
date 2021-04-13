@@ -5,23 +5,22 @@ paginatedResults = (modelo, sort) => {
         const inicioIndex = (pagina - 1) * limite;
         const finalIndex = pagina * limite;
         const total = await modelo.countDocuments().exec();
-        const listaResultados = {};
+        const listaResultados = {
+            paginas: {},
+            resultados: []
+        };
 
         if (inicioIndex > 0) {
-            listaResultados.anterior = {
-                paginaAnterior: pagina - 1,
-                limite: limite
-            };
+            listaResultados.paginas.paginaAnterior = pagina - 1;
         }
         if (finalIndex < total) {
-            listaResultados.proximo = {
-                paginaProxima: pagina + 1,
-                limite: limite
-            };
+            listaResultados.paginas.paginaProxima = pagina + 1;
         }
 
-        listaResultados.total = total;
+        listaResultados.paginas.total = total;
+        listaResultados.paginas.limite = limite;
         listaResultados.resultados = await modelo.find().sort(sort).limit(limite).skip(inicioIndex).exec();
+
         res.paginatedResults = listaResultados;
         next();
     }
