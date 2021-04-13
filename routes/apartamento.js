@@ -5,7 +5,7 @@ const Morador = require("../model/morador");
 const Veiculo = require("../model/veiculo");
 const Visitante = require("../model/visitante");
 const Functions = require("../resources/Functions");
-const sort = {numero: -1};
+const sort = {numero: 1};
 
 router.get("/", Functions.paginatedResults(Apartamento, sort), (req,res) => {
     try {
