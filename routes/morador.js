@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Morador = require("../model/morador");
 const Functions = require("../resources/Functions");
+const sort = {nome: 1};
 
-router.get("/", Functions.paginatedResults(Morador), (req, res) => {
+router.get("/", Functions.paginatedResults(Morador, sort), (req, res) => {
     try {
         /* const moradores = await Morador.find(); */
         res.json(res.paginatedResults);
