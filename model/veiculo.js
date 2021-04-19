@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const veiculoSchema = new mongoose.Schema({
     modelo: {
         type: String,
-        required: true
+        required: false
     },
     marca: {
         type: String,
@@ -11,7 +11,7 @@ const veiculoSchema = new mongoose.Schema({
     },
     cor: {
         type: String,
-        required: true
+        required: false
     },
     placa: {
         type: String,
